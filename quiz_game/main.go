@@ -9,14 +9,28 @@ import (
 func main() {
 	// initialise counters
 	var questionNumber int
+	var score int
 
     // Call csvReader and iterate through output
     for _, line := range csvReader("./problems.csv") {
     	questionNumber = questionNumber + 1
 
+    	// Ask user the question
+    	fmt.Printf("Problem #%d: %s = ", questionNumber, line[0])
 
-    	fmt.Printf("Problem #%d: %s =\n", questionNumber, line[0])
+    	// Get user input
+    	var answer string
+    	fmt.Scan(&answer)
+
+    	// Compare user's answer to solution
+    	if answer == line[1] {
+    		score = score + 1
+    	}
+
     }
+
+    // Output user score and number of questions
+    fmt.Printf("You have correctly answered %d of %d questions\n", score, questionNumber)
 }
 
 func csvReader(fileName string) [][] string{
