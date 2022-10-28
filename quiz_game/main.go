@@ -7,12 +7,21 @@ import (
 )
 
 func main() {
-    fmt.Println(csvReader())
+	// initialise counters
+	var questionNumber int
+
+    // Call csvReader and iterate through output
+    for _, line := range csvReader("./problems.csv") {
+    	questionNumber = questionNumber + 1
+
+
+    	fmt.Printf("Problem #%d: %s =\n", questionNumber, line[0])
+    }
 }
 
-func csvReader() [][] string{
+func csvReader(fileName string) [][] string{
   // Open the file
-  recordFile, err := os.Open("./problems.csv")
+  recordFile, err := os.Open(fileName)
   if err != nil {
    fmt.Println("An error encountered ::", err)
   }
